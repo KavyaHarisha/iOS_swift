@@ -37,3 +37,54 @@ var tabText = "Hi to\tall"
 print(tabText)
 var newLineText = "Good evening to all\nJoin in iOS learning"
 print(newLineText)
+
+//String Interpolation
+//-->use the backslash character \ to use variables and constants inside a string
+var languageName = "iOS"
+print("This is \(languageName) programing..")
+
+//Swift Multiline String
+//-->use triple double quotes """ - create a multiline string in Swift
+var learnSwift = """
+By using Swift we develop iOS applications.
+Design our own application with help of iOS development
+"""
+print(learnSwift)
+//Note - Multi-line strings must always begin on a new line. Otherwise, it will generate an error.
+//example -
+//var str = """Swift
+//I love Swift
+//"""
+
+//Swift Output
+//-->use the print() function to print output
+//Information about Output
+"""
+However, the actual syntax of the print function accepts 3 parameters
+print(items: separator: terminator:)
+Here,
+items - values inside the double quotation
+separator (optional) - allows us to separate multiple items inside print().
+terminator (optional) - allows us to add add specific values like new line "\n", tab "\t"
+
+separator and terminator are optional. If we don't include them inside the print(), their default values: single space " " for separator and new line "\n" for terminator are used.
+"""
+// print with terminator space
+print("Good Morning!", terminator: " ")
+print("It's rainy today")
+//print() with separator
+print("New Year", 2022, "See you soon!", separator: ". ")
+//Print Concatenated Strings
+print("Entire world is " + "awesome.")
+
+//Swift Input
+//-->use the readLine() function to take input from users.
+//print("Enter your favorite programming language:")
+//let name:String? = readLine()
+
+//print("Your favorite programming language is \(name!).")
+/*
+ Multiline Comment
+ In Swift, any text between /* and */ is a multiline comment.
+ Always use comments to explain why we did something rather than how we did something. Comments shouldn't be the substitute for the way to explain poorly written code.
+ */
