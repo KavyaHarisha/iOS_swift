@@ -88,3 +88,34 @@ print("Entire world is " + "awesome.")
  In Swift, any text between /* and */ is a multiline comment.
  Always use comments to explain why we did something rather than how we did something. Comments shouldn't be the substitute for the way to explain poorly written code.
  */
+/*
+ Swift optionals
+ variable or constant declared of those types contains a default values.
+ */
+let defaultVlaue = Int()
+print("The default value of Int is \(defaultVlaue)")
+/*
+ In Swift another data type available that is an Optional, whose default value is null value(nil)
+ */
+//Declaration of Optional
+var defaultValueOfInt: Int?
+var defaultValueOfInt1: Int!
+print(defaultValueOfInt)
+print("An optional defautl value of int is \(defaultValueOfInt1)")
+//We can create optional by using ? and !.
+//Assigning and accessing a value from an optinal
+let defaultValueOfInt2: Int? = 5
+print("An optional value of defaultValueOfInt2 \(defaultValueOfInt2)")
+//The above give the output like Optional<value> ex: Optional(5)
+print("An optional value of defaultValueOfInt2 with ! \(defaultValueOfInt2!)")
+//In order the access the <Value> from Optional, we need a mechanism called unwrapping. We can unwrap an optinal by appending ! character at the end of the variable/constant. ex: 5
+//Note: The unwrapping mechanism should only be used when you are certain that the optional will sure have a value when you access it.
+//Explicitly declaring an unwrapped optional
+let defalueValueOfIntWithUnwrap : Int! = 10
+print("An optional value of unwrap type mechanism is \(defalueValueOfIntWithUnwrap!)")
+//Note: Remeber always need to have a value when you accesss it. If you don't you will get a fatal error crash.
+/*
+ Ex: var someValue : Int!
+ var unWrappedValue: Int = someValue // crashes due to this line
+ */
+
