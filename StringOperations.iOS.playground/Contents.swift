@@ -118,4 +118,66 @@ print("An optional value of unwrap type mechanism is \(defalueValueOfIntWithUnwr
  Ex: var someValue : Int!
  var unWrappedValue: Int = someValue // crashes due to this line
  */
+//Optional Handling
+/*
+ Better way to use optional value is by conditional unwrapping rather than force unwrapping using ! operator, then we can avoid the unexpectedly found nil while unwrapping an optional exception and crash
+ */
+//1)If-statement
+var someValueWithQuestionOperator: Int?
+var someValueWithOptionalOperator: Int! = 5
+if someValueWithQuestionOperator != nil {
+    print("The someValueWithQuestionOperator variable has some value \(someValueWithQuestionOperator!)")
+} else {
+    print("The someValueWithQuestionOperator variable doesn't contain value")
+}
+if someValueWithOptionalOperator != nil {
+    print("The someValueWithOptionalOperator varible has some value \(someValueWithOptionalOperator!)")
+} else {
+    print("The someValueWithOptionalOperator doesn't contain value")
+}
+/*
+ The major drawback of optional handling using the if-statement is, you still need to unwrap the value from optional using ! operator.
+ */
 
+//2)Optional binding(if-let)
+/*
+ Optional binding helps you to find out whether an optional contains a value or not. If an optional contains a value, that value is available as a temporary constant or variable.
+ */
+var someValueWithBindingQuestionOperator : Int?
+var someValueWithBindingOptionalOperator: String! = "Swift"
+
+if let tempQuestionOperator = someValueWithBindingQuestionOperator {
+    print("The tempQuestionOperator variable has some value \(tempQuestionOperator)")
+} else {
+    print("The tempQuestionOperator doesn't contain value")
+}
+
+if let tempOptionalOperator = someValueWithBindingOptionalOperator {
+    print("The tempOptionalOperator has some value is \(tempOptionalOperator)")
+} else {
+    print("The tempOptionalOperator doesn't contain value is ")
+}
+
+//3) Guard statement
+/*
+ For now, just think of guard as an if-else condition with no if block. If the condition fails, else statement is executed.
+ */
+
+func testGuardFuncForOptional() {
+    let someValueGuardWithQuestionOperator: Float? = 0.666
+    guard let tempGuardVariable = someValueGuardWithQuestionOperator else {
+        return
+    }
+    print("The tempGuardVariable variable value is \(tempGuardVariable)")
+}
+
+testGuardFuncForOptional()
+
+//4) Nil-coalescing operator
+/*
+ Nil-coalescing operator to check the whether a optional contains a value or not. It is defined as (a ?? b). It unwraps an optional a and returns if if it contains a value, or return a default value if if a is nil.
+ */
+var someValueNilCoalescingIWithQuestionOperator: Int!
+let defaultValeForQuestionOperator = 20
+let unwrapWithHelpOfNilCoalescing: Int = someValueNilCoalescingIWithQuestionOperator ?? defaultValeForQuestionOperator
+print("The unwrapWithHelpOfNilCoalescing value is \(unwrapWithHelpOfNilCoalescing)")
