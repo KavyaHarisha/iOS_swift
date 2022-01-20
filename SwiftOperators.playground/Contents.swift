@@ -90,3 +90,64 @@ print(!false)
  ...        Range Operator - define range containing values        (1 ... 3) //range containing values 1,2,3
  */
 
+/*
+ Swift Operator precedence
+ Operator precedence is a set of rules that determines which operator is executed first.
+ Let's take an example, suppose there is more than one operator in an expression.
+ */
+var num = 8 + 5 * 4 // 28
+/*
+Here,
+-> if + is executed first, the value of num will be 52
+ -> if * is executed first, the value of num will be 28
+ 
+ In this case, operator precedence is used to identify which operator is executed first. The operator precedence of * is higher than + so multiplication is executed first.
+ 
+ Operator precedence table
+ Operators                  Examples
+ Bitwise shift              >> <<
+ Multiplicative             % * /
+ Additive                   | - + -  ^
+ Range                      ..< ...
+ Casting                    is as
+ Nil-Coalescing             ??
+ Comparison                 != > < >= <= === ==
+ Logical AND                &&
+ Logical OR                 ||
+ Ternary Operator           ? :
+ Assignment Precedence      |= %= /= *= >>= <<= ^= += -=
+ */
+var precedenceNumber = 15
+precedenceNumber += 10 - 2 * 3
+print(precedenceNumber)
+//Here, the precedence order from higher to lower is *, -, and +=
+/*
+ Operator Associativity:
+ If an expression has two operators with similar precedence, the expression is evaluated according to its associativity (either left to right, or right to left).
+ */
+print(5 * 6 / 3) // 10
+/*
+ their associativity is from left to right. Hence, 5 * 6 is executed first.
+ Note: If we want to execute the division first, we can use parentheses as print(5 * (6 / 3)).
+ 
+ Operator Associativity Table:
+ If an expression has two operators with similar precedence, the expression is evaluated according to its associativity.
+Left Associativity - operators are evaluated from left to right
+Right Associativity - operators are evaluated from right to left
+ Non-associativity - operators have no defined behavior
+ 
+ The table below shows the associativity of Swift operators.
+
+ Operators                              Associativity
+ Bitwise Shift: >> <<                   none
+ Multiplicative: % * /                  left
+ Additive: | + - ^                      left
+ Range: ..< ...                         none
+ Casting: is as                         none
+ Nil-Coalescing: ??                     right
+ Comparison: != > < >= <= === ==        none
+ Logical AND: &&                        left
+ Logical OR: ||                         left
+ Ternary Operator: ? :                  right
+ Assignment: |= %= /= *= >>= <<= ^=     right
+ */
