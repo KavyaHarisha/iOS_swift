@@ -187,3 +187,202 @@ case ("David", 10): print("David age is 10")
 case ("Kevin",40): print("Kavin age is 40")
 default: print("Un know user information")
 }
+
+/*
+ Swift for-in Loop:
+ Loops are used to repeat a block of code.
+ There are 3 types of loops in Swift:
+
+ for in loop
+ while loop
+ repeat...while loop
+ 
+ 1)Swift for-in Loop:
+ In Swift, the for-in loop is used to run a block of code for a certain number of times. It is used to iterate over any sequences such as an array, range, string, etc.
+
+ The syntax of the for-in loop is:
+
+ for val in sequence{
+   // statements
+ }
+ Here, val accesses each item of sequence on each iteration. Loop continues until we reach the last item in the sequence.
+ */
+
+let languages = ["iOS", "Java","Python","Java Script"]
+for langType in languages {
+    print("\(langType)", terminator: "\t")
+}
+
+/*
+ for Loop with where Clause:
+ In Swift, we can also add a where clause with for-in loop. It is used to implement filters in the loop. That is, if the condition in where clause returns true, the loop is executed.
+ */
+print("")
+for langTypes in languages where langTypes != "Java Script" {
+    print(langTypes,terminator: "\t")
+}
+/*
+ for Loop With Range
+ A range is a series of values between two numeric intervals. For example,
+ var values = 1...3
+ */
+print()
+for number in 1...4 {
+    print(number, terminator: "\t")
+}
+print()
+/*
+ for Loop with Stride Function:
+ If we want a loop to increment by some fixed value in each iteration, instead of range, we have to use stride(from:to:by) function.
+ */
+for number in stride(from: 1, to: 10, by: 3) {
+    print(number, terminator: "\t")
+}
+print()
+
+/*
+ Swift while Loop:
+It is used to run a specific code until a certain condition is met.
+
+ The syntax of while loop is:
+
+ while (condition){
+   // body of loop
+ }
+ Here,
+
+ A while loop evaluates condition inside the parenthesis ().
+ If condition evaluates to true, the code inside the while loop is executed.
+ condition is evaluated again.
+ This process continues until the condition is false.
+ When condition evaluates to false, the loop stops.
+ */
+
+var currentLevel = 0, finalLevel = 5
+while (currentLevel < finalLevel) {
+    print("You have passed level \(currentLevel)")
+    currentLevel += 1
+}
+print("Successfully completed all game levels")
+/*
+ repeat...while Loop:
+ 
+ The repeat...while loop is similar to while loop with one key difference. The body of repeat...while loop is executed once before the test expression is checked.
+ The syntax of repeat..while loop is:
+ repeat {
+   // body of loop
+ } while (condition)
+ Here,
+
+ The body of the loop is executed at first. Then condition is evaluated.
+ If condition evaluates to true, the body of the loop inside the repeat statement is executed again.
+ condition is evaluated once again.
+ This process continues until condition evaluates to false. Then the loop stops.
+ */
+var currentNumber = 1, finalNumber = 5
+repeat {
+    print(currentNumber,terminator: "\t")
+    currentNumber = currentNumber + 1
+} while(currentNumber < finalNumber)
+print("")
+/*
+ Infinite while Loop
+ If the condition of a while loop is always true, the loop runs for infinite times (until the memory is full). This is called infinite while loop. For example,
+
+ while (true) {
+     print("Endless Loop")
+ }
+ 
+ Notes:
+ --> A for-in loop is usually used when the number of iterations is known
+ --> However, a while loop is usually used when the number of iterations are unknown.
+ */
+
+/*
+ Nested Loops in Swift:
+ If a loop exists inside the body of another loop, it's called a nested loop.
+ --> Swift Nested for Loop:
+ A nested for loop includes one for loop inside another for loop
+ */
+for week in 1...2 {
+    print("week: \(week)")
+    for day in 1 ... 7 {
+        print(" Day \(day)")
+    }
+    print("")
+}
+/*
+ Swift for Loop inside a while Loop
+ We can also create nested loops of different types. That is, we can put a for loop inside a while loop and vice versa.
+ */
+var weeks = 2
+var day = 1
+
+// outer while loop
+while (day <= weeks){
+  print("Week: \(day)")
+
+  // inner for loop
+  for dayVlaue in 1...5{
+      print("  Day:  \(dayVlaue)")
+    }
+
+    day = day + 1
+}
+/*
+ 1. break inside Nested Loop:
+ When we use a break statement inside the inner loop, it terminates the inner loop but not the outer loop.
+ */
+// outer loop
+for week in 1...3 {
+  print("Week: \(week)")
+
+  // inner loop
+  for day in 1...5 {
+
+
+    if(week == 2) {
+      // use of break statement
+      break
+      }
+
+    print("  Day:  \(day)")
+   }
+
+  print("")
+}
+/*
+ if(week == 2) {
+   break
+ }
+ Hence, days for week 2 are not printed. However, the outer loop that prints week is unaffected.
+ 
+ 2. continue inside a Nested Loop:
+
+ Similarly, when we use a continue statement inside the inner loop, it skips the current iteration of the inner loop only.
+ */
+// outer loop
+for week in 1...2 {
+  print("Week: \(week)")
+
+  // inner loop
+  for day in 1...5 {
+
+    // use of continue statement
+    if(day % 2 != 0) {
+      continue
+      }
+
+   print("  Day:  \(day)")
+   }
+
+  print("")
+}
+/*
+ if(day % 2 != 0) {
+   continue
+ }
+ Here, the continue statement is executed when the value of day is odd. Hence, the program only prints those days that are even.
+
+ We can see the continue statement has affected only the inner loop. The outer loop is working without any problem.
+ */
