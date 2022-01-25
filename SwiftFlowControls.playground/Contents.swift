@@ -386,3 +386,150 @@ for week in 1...2 {
 
  We can see the continue statement has affected only the inner loop. The outer loop is working without any problem.
  */
+
+/*
+ Swift break Statement:
+ The break statement is used to terminate the loop immediately when it is encountered.
+ --> Swift break statement with for loop:
+ We can use the break statement with for loop to terminate the loop when certain condition is met.
+ */
+for numbers in 1...5 {
+    if(numbers == 3) {
+        break
+    }
+        print(numbers)
+}
+/*
+ -->break with while Loop:
+ We can also terminate a while loop using the break statement.
+ */
+var whileVar = 1
+while(whileVar<=5){
+    if(whileVar > 3){
+        break
+    }
+    print("5 * \(whileVar)=", 5*whileVar)
+    whileVar = whileVar + 1
+}
+
+/*
+ -->Swift break statement with nested loops:
+ When we use the break statement with nested loops, it terminates the inner loop.
+ */
+for num in 1...3 {
+    for num1 in 1...3 {
+        if(num == 2) {
+            break
+        }
+        print("num = \(num), num1 = \(num1)")
+    }
+}
+
+/*
+ Swift Labeled break:
+ When using nested loops, we can terminate the outer loop with a labeled break statement.
+ */
+outerLoop: for i in 1...3 {
+    for j in 1...3 {
+        if(i == 2){
+            break outerLoop
+        }
+        print("i = \(i), j = \(j)")
+    }
+}
+/*
+ Swift continue Statement:
+ The continue statement is used to skip the current iteration of the loop and the control flow of the program goes to the next iteration.
+ */
+//Swift continue Statement With for Loop
+for i in 1...3 {
+    if(i == 2){
+        continue
+    }
+    print("The i value is \(i)")
+}
+//continue with while loop
+var n = 0
+while(n<10) {
+    n += 1
+    if(n % 2 == 0){
+        continue
+    }
+    print(n)
+}
+//Swift continue statement with nested loops
+for i in 1...3 {
+    for j in 1...3 {
+        if(i == 2){
+            continue
+        }
+        print("i = \(i), j = \(j)")
+    }
+}
+/*
+ Swift Labeled continue:
+ When using nested loops, we can skip the current iteration of the outer loop with a labeled continue statement.
+ */
+
+outerForLoop: for i in 1...3 {
+    for j in 1...3 {
+        if(j==3){
+            continue outerForLoop
+        }
+        print("i = \(i), j = \(j)")
+    }
+}
+
+/*
+ Swift guard Statement:
+ In Swift, we use the guard statement to transfer program control out of scope when certain conditions are not met.
+
+ The guard statement is similar to the if statement with one major difference. The if statement runs when a certain condition is met. However, the guard statement runs when a certain condition is not met.
+ The syntax of the guard statement is:
+
+ guard expression else {
+   // statements
+   // control statement: return, break, continue or throw.
+ }
+ Here, expression returns either true or false. If the expression evaluates to
+
+ true - statements inside the code block of guard are not executed
+ false - statements inside the code block of guard are executed
+ Note: We must use return, break, continue or throw to exit from the guard scope.
+ Note: The use of control statements like continue, break, etc. is compulsory. Otherwise, we will get an error: 'guard' body must not fall through, consider using a 'continue' or 'return' to exit the scope
+ The guard statement is generally used with functions.
+ */
+
+func checkOddEven() {
+    let number = 33
+    guard number % 2 == 0 else {
+        print("The number is odd")
+        return
+    }
+    
+    print("The number is even")
+}
+checkOddEven()
+//guard with multiple conditions
+
+func checkJobEligibility(){
+    let age = 25
+    guard age >= 18, age <= 40 else {
+        print("Not eligible for job")
+        return
+    }
+    print("You are eligible for job")
+}
+checkJobEligibility()
+//guard-let Statement
+
+func checkAge() {
+    var age: Int? = nil
+    guard let myAge = age else {
+        print("Age is undefined")
+        return
+    }
+    print("My age is \(myAge)")
+}
+checkAge()
+//The guard statement is introduced as an alternative to the if statement.
