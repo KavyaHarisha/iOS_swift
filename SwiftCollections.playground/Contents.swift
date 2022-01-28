@@ -189,3 +189,76 @@ if set1 == set2 {
  */
 let emptySet = Set<String>()
 print(emptySet)
+
+/*
+ Swift Dictionary:
+ Swift dictionary is an unordered collection of items. It stores elements in key/value pairs. Here, keys are unique identifiers that are associated with each value.
+ */
+//Create a dictionary in Swift
+var capitalCity = ["Napal": "Kathmandu","Italy":"Rome","England": "London"]
+print("Cities and it's capitals are \(capitalCity)")
+/*
+ Note: Here, keys and values both are of String type. We can also have keys and values of different data types.
+ */
+var studentId = [10: "Ramesh", 20: "Joe", 30: "Kesh"]
+print("Student id and it's names \(studentId)")
+/*
+ Add Elements to a Dictionary:
+ We can add elements to a dictionary using the name of the dictionary with [].
+ */
+capitalCity["Japan"] = "Tokyo"
+print("Update capitalCity dictionary \(capitalCity)")
+/*
+ Change Value of Dictionary:
+ We can also use [] to change the value associated with a particular key.
+ */
+studentId[30] = "Jhon"
+print("Updated studentId dictionary\(studentId)")
+/*
+ Access Elements from Dictionary:
+ In Swift, we can access the keys and values of a dictionary independently.
+ 1. Access Keys Only:
+ We use the keys property to access all the keys from the dictionary.
+ */
+print("The capitalCity dictionary keys are \(capitalCity.keys)")
+/*
+ 2. Access Values Only:
+ Similarly, we use the values property to access all the values from the dictionary.
+ */
+print("The capitalCity dictionary values are \(capitalCity.values)")
+/*
+ Remove an Element from a Dictionary:
+ We use the removeValue() method to remove an element from the dictionary.
+ */
+studentId.removeValue(forKey: 20)
+print("studentId dictionary after removeValue(): \(studentId)")
+/*
+ Other Dictionary Methods:
+ Method                     Description
+ removeAll()                remove all elements of a dictionary
+ sorted()                   sorts dictionary elements
+ shuffled()                 changes the order of dictionary elements
+ contains()                 checks if the specified element is present
+ randomElement()            returns a random element from the dictionary
+ firstIndex()               returns the index of the specified element
+
+ Iterate Over a Dictionary:
+ We use the for loop to iterate over the elements of a dictionary.
+ */
+for (city,capital) in capitalCity {
+    print("\(city): \(capital)")
+}
+/*
+ Find Number of Dictionary Elements:
+ We can use the count property to find the number of elements present in a dictionary.
+ */
+print("The studentId dictionary elements count is \(studentId.count)")
+/*
+ Create an Empty Dictionary:
+ In Swift, we can also create an empty dictionary.
+ */
+var emptyDictionary = [Int: String]()
+print("Empty dictionary: \(emptyDictionary)")
+/*
+ Note: It is compulsory to specify the data type of dictionary while creating an empty dictionary.
+ */
