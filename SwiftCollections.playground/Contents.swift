@@ -262,3 +262,54 @@ print("Empty dictionary: \(emptyDictionary)")
 /*
  Note: It is compulsory to specify the data type of dictionary while creating an empty dictionary.
  */
+/*
+ Swift Tuple:
+ In Swift, a tuple is a group of different values. And, each value inside a tuple can be of different data types.
+ Create A Tuple
+ In Swift, we use the parenthesis () to store elements of a tuple.
+ */
+var userData = ("Sam",20)
+print("User details are \(userData)")
+/*
+ Access Tuple Elements:
+ Like an array, each element of a tuple is represented by index numbers (0, 1, ...) where the first element is at index 0.
+
+ We use the index number to access tuple elements.
+ */
+print("User age is \(userData.1)")
+/*
+ Modify Tuple Element:
+ We can modify a tuple element by assigning a new value to the particular index.
+ */
+userData.0 = "Kiran"
+print("After update the tuple user name \(userData)")
+/*
+ Named Tuples:
+    We can also provide names for each element of the tuple.
+ */
+var company = (name: "XYZ company",found: 1994)
+print("Access the tuple element with named tuples - \(company.found)")
+/*
+ We have used the . notation and the provided names to access the corresponding values of the tuple.
+
+ Swift Nested Tuple
+ We can create a tuple as an element of another tuple.
+ */
+let alphabets = ("a","b","c",("d","e","f"))
+print("alphabets first element is \(alphabets.0)")
+print("alphabets fourth element of nested element \(alphabets.3)")
+/*
+ Add/Remove Elements From Tuple:
+ We cannot add or remove elements from a tuple.So, when we try to add and remove elements from the tuple, we get errors.
+ 
+ Dictionary Inside a Tuple:
+ We can use a dictionary to add an element to a tuple.
+ */
+var laptopLaunch = ("MackBook", 1888,["Nepal": "10AM", "England": "12PM"])
+print("Tuple inside dictionary \(laptopLaunch)")
+//As we know we can add elements to a dictionary. So, we use the code.
+laptopLaunch.2["USA"] = "10:45AM"
+print("After add the element to dictionary in tuple \(laptopLaunch)")
+/*
+ This way we are able to add an element to a tuple. And, the type of tuple is still the same (String, String, Dictionary). So, we don't get any errors.
+ */
