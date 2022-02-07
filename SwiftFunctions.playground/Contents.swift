@@ -239,3 +239,101 @@ print("Result of nested function with return value is:",nestedResult)
  let result = operation(5, 3)
  Here, operation(5, 3) is replaced by either add(5, 3) or subtract(5, 3) based on the value of symbol passed to the operate() function.
  */
+/*
+ Swift Recursion:
+ A function that calls itself is known as a recursive function. And, this technique is known as recursion.
+ func recurse() {
+   ... ...
+   recurse()
+   ...  ...
+ }
+
+ recurse()
+ Here, the recurse() function is calling itself over and over again.
+ Stopping Condition for Recursion:
+ If we don't mention any condition to break the recursive call, the function will keep calling itself infinitely.
+ We use the if...else statement (or similar approach) to break the recursion.
+
+ Normally, a recursive function has two branches:
+
+ One for recursive calls.
+ Another for breaking the call under certain conditions.
+ */
+func countDown(num: Int){
+    print(num)
+    if(num == 0){
+        print("Count down stop")
+    } else {
+        countDown(num: num - 1)
+    }
+}
+print("Count down start")
+countDown(num: 3)
+//Find factorial of a number
+func factorial(num: Int) -> Int {
+    if(num == 0){
+        return 1
+    } else {
+        return num * factorial(num: num - 1)
+    }
+}
+print("Factorial of 5 is",factorial(num: 5))
+/*
+ Advantages and Disadvantages of Function Recursion:
+ Below are the advantages and disadvantages of using recursion in Swift programming.
+ 1. Advantages
+ It makes our code shorter and cleaner.
+ Recursion is required in problems concerning data structures and advanced algorithms, such as Graph and Tree Traversal.
+ 2. Disadvantages
+ It takes a lot of stack space compared to an iterative program.
+ It uses more processor time.
+ It can be more difficult to debug compared to an equivalent iterative program.
+ */
+/*
+ Swift Ranges:
+ A range is a series of values between two numeric intervals.
+ var numbers = 1...4
+ Here,
+ --> ... is a range operator
+ --> 1...4 contains values 1, 2, 3, 4
+ --> 1 is lower bound (first element)
+ --> 4 is upper bound (last element)
+ Types of Range in Swift:
+ 1) Closed Range:
+ A closed range includes all the values in the interval from the lower bound to the upper bound.
+ It is declared using the ... (3 dots) operator.
+ */
+for number in 1...4 {
+    print(number)
+}
+/*
+ In the above example, we have created a closed range 1...4.
+ Since it is a closed range, it contains all the numbers between 1 to 4 including the lower bound (1) and upper bound (4).
+ Here, we have used the Swift for loop to access all the values in the range.
+ 
+ 2) Half-Open Range:
+ A half-open range includes all the values from the lower bound to the upper bound. However, it excludes the upper bound (last number).
+
+ It is declared using the ..< operator.
+ */
+for num in 1..<3 {
+    print(num)
+}/*
+  3) One-sided Range:
+  We can create a one-sided range using either of the ... or the ..< operator.
+  A one-sided range contains elements up to infinite in one direction.
+  let range1 = ..<2
+  Here, ...<2 is a one-sided range. It contains all elements from 2 to -∞. Similarly, the range
+  let range2 = 2...
+  contains all elements from 2 to +∞.
+
+  We can verify this by checking if a certain number is present in the range.
+  */
+let upperBoundRange = ..<2
+print("Check the -8 in the upper bound range",upperBoundRange.contains(-8))
+let lowerBoundRange = 3...
+print("Check the 2 in the lower bound range",lowerBoundRange.contains(2))
+/*
+ Here, we have used contains() method to check if a certain number is present in the range.
+ Note: With a one-sided range, we only set either upper bound or lower bound. Access Array Elements Using Swift Range
+ */
