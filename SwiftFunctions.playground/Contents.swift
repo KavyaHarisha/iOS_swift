@@ -337,3 +337,125 @@ print("Check the 2 in the lower bound range",lowerBoundRange.contains(2))
  Here, we have used contains() method to check if a certain number is present in the range.
  Note: With a one-sided range, we only set either upper bound or lower bound. Access Array Elements Using Swift Range
  */
+/*
+ Swift Function Overloading:
+ Two or more functions may have the same name if they differ in parameters (different number of parameters, different types of parameters, or both).
+ These functions are called overloaded functions and this feature is called function overloading. For example:
+
+ // same function name different arguments
+ func test() { ... }
+ func test(value: Int) -> Int{ ... }
+ func test(value: String) -> String{ ... }
+ func test(value1: Int, value2: Double) -> Double{ ... }
+ Here, the test() function is overloaded. These functions have the same name but accept different arguments.
+ Note: The return types of the above functions are not the same. It is because function overloading is not associated with return types. Overloaded functions may have the same or different return types, but they must differ in parameters.
+ */
+//function with Int type parameter
+func displayValue(value: Int){
+    print("Integer value:",value)
+}
+//function with String type parameter
+func displayValue(value: String){
+    print("String value:",value)
+}
+//function with two parameters
+func displayValue(value: Int,value1: Int){
+    print("First number \(value) and second number \(value1)")
+}
+displayValue(value: 5)
+displayValue(value: "Swift")
+displayValue(value: 7, value1: 0)
+//Function overloading with Argument Label
+func displayValue(person age: Int){
+    print("Function overloading with label argument value is \(age)")
+}
+func displayValue(personage age:Int){
+    print("Function overloading with label argument with different name value is",age)
+}
+displayValue(person: 22)
+displayValue(personage: 40)
+/*
+ In the above example, two functions with the same name display() have the same number and the same type of parameters. However, we are still able to overload the function.
+ It is because, in Swift, we can also overload the function by using argument labels.
+ Here, two functions have different argument labels. And, based on the argument label used during the function call, the corresponding function is called.
+ */
+/*
+ Swift Closures:
+ A closure is a special type of function without the function name.
+ Swift Closure Declaration:
+ { (parameters) -> returnType in
+    // statements
+ }
+ Here,
+ parameters - any value passed to closure
+ returnType - specifies the type of value returned by the closure
+ in (optional) - used to separate parameters/returnType from closure body
+ */
+let greetMessage = {
+    print("Hello, swift world")
+}
+/*
+ Here, we have defined a closure and assigned it to the variable named greetMessage. Statement enclosed inside the {} is the closure body.
+
+ To execute this closure, we need to call it. Here's how we can call the closure
+ */
+greetMessage()
+/*
+ Closure Parameters:
+ Similar to functions, a closure can also accept parameters.
+ */
+let greetUser = { (name: String) in
+    print("Hey there,",name)
+}
+greetUser("Sam")
+/*
+ In the above example, we have assigned a closure to the greetUser variable.
+ Inside the closure, (name: String) specifies that the closure accepts the String type parameter named. Notice that we have used in to separate closure parameter with body.
+ Closure That Returns Value:
+ A Swift closure may or may not return a value. If we want our closure to return some value, we need to mention it's return type and use the return statement.
+ */
+let squareRootValue = { (num: Float) -> Float in
+    return sqrt(num)
+}
+print("Find the square root of the number with help closure functions",squareRootValue(25.0))
+/*
+ Closures as Function Parameter:
+ In Swift, we can create a function that accepts closure as its parameter.
+ // define a function
+ func grabLunch(search: () -> ()) {
+   …
+   // closure call
+   search()
+ }
+ Here,
+ search - function parameter
+ () -> () - represents the type of the closure
+ search() - call closure from the inside of the function.
+ Now, to call this function, we need to pass a closure as its argument
+
+ // function call
+ grabLunch(search: {
+   print("Alfredo's Pizza: 2 miles away")
+ })
+ */
+func grabLunch(search: () -> ()){
+    print("Let's go out for lunch")
+    search()
+}
+grabLunch {
+    print("Pizza hub is little far away")
+}
+/*
+ Trailing Closure:
+ In trailing closure, if a function accepts a closure as its last parameter
+ We can call the function by passing closure as a function body without mentioning the name of the parameter.
+ Autoclosure:
+ While calling a function, we can also pass the closure without using the braces {}.
+ */
+func dispaly(greetInfo: @autoclosure () -> ()) {
+    greetInfo()
+}
+dispaly(greetInfo: print("Hello auto closure"))
+/*
+ Note: We cannot pass arguments to an autoclosure. If we try to do so we'll get the error message as: argument type of @autoclosure parameter must be '()'.
+ */
