@@ -171,3 +171,205 @@ print("University details are",university1.founded,University.name)
  obj.founded - access the non-static property using the object of the class
  A static property is of the class type (associated with class rather than object), so we are able to access them using class names.
  */
+/*
+ Swift Methods:
+ A Swift function defined inside a class is called method.
+ class Person {
+   // define methods
+   func greet() {
+   // method body
+   }
+ }
+ Swift static Methods:
+ We have used objects of the class to access its methods. However, we can also create methods that can be accessed without creating objects.
+
+ These types of methods are called static methods. In Swift, we use the static keyword to create a static method. For example,
+
+ class Calculator {
+
+   // static method
+   static func add() {
+   ...
+   }
+ }
+ Here, add() is the static method.
+
+ To access a static method, we use the class name. For example,
+
+ // access static method
+ Calculator.add()
+ */
+class Calculator1 {
+    //non-static method
+    func multiply(num:Int, num1:Int) -> Int{
+        return num * num1
+    }
+    //static method
+    static func add(num:Int,num2:Int) -> Int {
+        return num+num2
+    }
+}
+let calObj = Calculator1()
+let staticAddResult = Calculator1.add(num: 20, num2: 33)
+print("Static method add result",staticAddResult)
+print("Non static method multiply result",calObj.multiply(num: 10, num1: 2))
+/*
+ Swift self property in Methods:
+ Sometimes the name of a property and the name of a method parameter might be the same. For example,
+
+ var physics = 0
+ func checkEligibility(physics: Int) {
+ }
+ Here, both the property and the method parameter have the same name physics.
+
+ In such cases there might be ambiguity between the names. So to distinguish between them, we use the self property. The self property refers to the current object of the method.
+ */
+class Marks {
+    var physics = 0
+    func checkEligibility(physics: Int){
+        if(self.physics < physics){
+            print("Not eligible for admission")
+        } else {
+            print("Eligible for admission")
+        }
+    }
+}
+let stu = Marks()
+stu.physics = 33
+stu.checkEligibility(physics: 20)
+/*
+ Swift Initializer:
+ An initializer is a special type of function that is used to create an object of a class.
+ In Swift, we use the init() method to create an initializer. For example,
+
+ class Wall {
+   // create an initializer
+   init() {
+     // perform initialization
+     ...
+   }
+ }
+ */
+class Wall {
+    var length: Double
+    var height: Double
+    init() {
+        length = 2.5
+        height = 3.5
+        print("Wall length and height:",length, height)
+    }
+    
+    init(length: Double, height: Double){
+        self.length = length
+        self.height = height
+    }
+    func calcuatorArea() -> Double {
+        return length * height
+    }
+}
+Wall()
+/*
+ Here, when the wall1 object is created, the init() initializer is called. And, the value of the length and height properties are initialized to 2.5, 3.5.
+ Parameterized Initializer:
+ A Swift initializer can also accept one or more parameters. Such initializers are known as parameterized initializers (initializers with parameters).
+ */
+print("Area of the wall is",Wall(length: 3.0, height: 4.0).calcuatorArea())
+/*
+ Initializer Overloading:
+ Swift Initializers can be overloaded in a similar way as function overloading.
+
+ In initializer overloading, two or more initializers can have the same name if they have different types or numbers of parameters.
+
+ And, based on the arguments passed during the object creation, the corresponding initializer is called.
+ */
+class Person {
+    var age: Int
+    //initializer with no arguments
+    init() {
+        age = 10
+    }
+    //initialializer with an argument
+    init(age: Int) {
+        self.age = age
+    }
+    func getAge() -> Int {
+        return age
+    }
+}
+let person1 = Person()
+let person2 = Person(age: 30)
+print("Person age with out parameter initializer",person1.getAge())
+print("Person age with parameter initializer",person2.getAge())
+/*
+ Swift convenience Initializer:
+ In previous examples, the initializer we defined were primary initializers of the class. These primary initializers are also called designated initializers.
+ However, we can also define a secondary/supporting initializer for a class called convenience initializer.
+
+ To define a convenience initializer, we use the convenience keyword before the initializer.
+ */
+class University1 {
+    var name: String
+    var rank: String
+    init(name: String, rank: String) {
+        self.name = name
+        self.rank = rank
+    }
+    //convenience init
+    convenience init() {
+        self.init(name: "JUNTU",rank: "3")
+    }
+}
+let uni1 = University1()
+print("University name", uni1.name)
+print("University rank",uni1.rank)
+/*
+ In the above example, we have created a designated initializer: init() and a convenience initializer: convenience init().
+
+ Inside the convenience initializer, we have called the designated initializer and assigned values to the properties.
+
+ convenience init() {
+   self.init(name: "Kathmandu University", rank: "1st")
+ }
+ When the university1 object is created, the convenience initializer is called.
+
+ // using convenience initializer
+ var university1 = University()
+ This makes our code look cleaner compared to calling the designated initializer:
+
+ // call designated initializer
+ var university1 = University(name: "Kathmandu University", rank: "1st")
+ Note: Convenience Initializers are useful when it comes to assigning default values to stored properties.
+ 
+ Failable Initializer:
+ In some cases initializers might or might not work, this is called a failable initializer.
+
+ We write a failable initializer by placing a question mark (?) after the init keyword and return nil if something goes wrong.
+ */
+class File {
+    var folder : String
+    init?(folder: String){
+        if folder.isEmpty {
+            print("Folder not found")
+            return nil
+        }
+        self.folder = folder
+    }
+}
+let file = File(folder: "")
+if(file != nil){
+    print("File found successfully")
+} else {
+    print("Error finding file")
+}
+/*
+ In the above example, we have created the failable initializer init?() with a parameter named folder.
+
+ And, we have used the if statement and the isEmpty property
+
+ if (folder.isEmpty) { return nil }
+ to check if the folder is empty and returns nil if it is empty.
+
+ For the folder1 object, we have passed an empty string "" which triggers an initialization failure, so the statement inside it is executed first and then it returns nil.
+
+ And finally, the statement inside the else block is executed
+ */
