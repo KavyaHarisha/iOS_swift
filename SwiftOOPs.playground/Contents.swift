@@ -373,3 +373,211 @@ if(file != nil){
 
  And finally, the statement inside the else block is executed
  */
+/*
+ Swift Deinitialization:
+ Deinitialization is a process to deallocate class instances when they're no longer needed. This frees up the memory space occupied by the system.
+
+ We use the deinit keyword to create a deinitializer. For example,
+
+ class Race {
+   // create deinitializer
+   deinit {
+     // perform deinitialization
+   }
+ }
+ Here, deinit is the deinitializer of the Race class.
+ */
+class Race {
+    var lap: Int
+    init() {
+        lap = 5
+        print("Race completed")
+        print("Total laps are:",lap)
+    }
+    
+    deinit {
+        print("Memory deallocated")
+    }
+}
+var raceResult: Race? = Race()
+raceResult = nil
+/*
+ In the above example,
+ 1. We have created a deinitializer inside the Race class.
+
+ deinit {
+   print("Memory Deallocated")
+ }
+ 2. Then, we have created an instance of the Race class and assigned it to a Race type variable named result.
+ // create an instance
+ var result: Race? = Race()
+ Here, Race? indicates that result is an optional, so it can store two types of values:
+ values of the Race type.
+ a nil value.
+ 3. Finally, we assign nil to result:
+ // deallocate instance
+ result = nil
+ This deallocates the instance. The deinitializer is called automatically right before the class instance is deallocated. And the statement inside it is executed.
+ Note:
+ ->In Swift, we only use deinitializers when we manually want to deallocate instances. Otherwise, Swift automatically does the deallocation.
+ ->Deinitializers can only be used with classes and not with structs.
+ ->Each class can only have a single deinitializer.
+ 
+ Swift Inheritance:
+ Inheritance allows us to create a new class from an existing class.
+ The new class that is created is known as subclass (child or derived class) and the existing class from which the child class is derived is known as superclass (parent or base class).
+ Swift Inheritance Syntax:
+ In Swift, we use the colon : to inherit a class from another class. For example,
+ // define a superclass
+ class Animal {
+   // properties and methods definition
+ }
+ // inheritance
+ class Dog: Animal {
+   // properties and methods of Animal
+   // properties and methods of Dog
+ }
+ Here, we are inheriting the Dog subclass from the Animal superclass.
+ */
+class Animal {
+    var name: String = ""
+    func eat() {
+        print("I can eat")
+    }
+}
+
+class Dog: Animal {
+    func display() {
+        print("My name is",name)
+    }
+}
+
+var labrador = Dog()
+labrador.name = "Rink"
+labrador.eat()
+labrador.display()
+/*
+ In the above example, we have derived a subclass Dog from a superclass Animal. Notice the statements,
+ labrador.name = "Rohu"
+ labrador.eat()
+ Here, we are using labrador (object of Dog) to access name and eat() of the Animal class. This is possible because the subclass inherits all properties and methods of the superclass.
+ 
+ is-a relationship:
+ In Swift, inheritance is an is-a relationship. That is, we use inheritance only if there exists an is-a relationship between two classes.
+ Method Overriding in Swift Inheritance:
+ In the previous example, we see the object of the subclass can access the method of the superclass.
+
+ ->However, what if the same method is present in both the superclass and subclass?
+ In this case, the method in the subclass overrides the method in the superclass. This concept is known as method overriding in Swift.
+ We use the override keyword to tell the compiler that we are overriding a method.
+ */
+class Fruit {
+    func displayInformation(){
+        print("Need to grow soil and water")
+    }
+}
+
+class Mango: Fruit {
+    override func displayInformation() {
+        print("Grow in summer time")
+    }
+}
+let sourMango = Mango()
+sourMango.displayInformation()
+/*
+ In the above example, the same method displayInformation() is present in both the Mango class and the Fruit class.
+
+ Now, when we call the displayInformation() method using the object of the Mango subclass, the method of the Mango class is called.
+
+ This is because the displayInformation() method of the Mango subclass overrides the same method of the Fruit superclass. We have used the override keyword to specify the method is overridden.
+ 
+ super Keyword in Swift Inheritance:
+ Previously we saw that the same method in the subclass overrides the method in the superclass.
+
+ However, if we need to access the superclass method from the subclass, we use the super keyword. For example,
+ */
+class Vehicle {
+    var vehicleName: String = ""
+    func displayVehicleInformation(){
+        print("Use petrol to start engine")
+    }
+}
+
+class Car: Vehicle {
+    override func displayVehicleInformation() {
+        print("I can float on the water as well")
+        super.displayVehicleInformation()
+    }
+}
+let car = Car()
+car.displayVehicleInformation()
+/*
+ In the above example, the displayVehicleInformation() method of the Car subclass overrides the same method of the Vehicle superclass.
+ Inside the Car class, we have used
+ // call method of superclass
+ super.displayVehicleInformation()
+ to call the displayVehicleInformation() method of the Vehicle superclass from the Car subclass.
+ So, when we call the displayVehicleInformation() method using the car object
+ // call the displayVehicleInformation() method
+ car.displayVehicleInformation()
+ 
+ Why Inheritance?
+ To understand the benefits of Inheritance, let's consider a situation.
+ Suppose we are working with regular polygons such as squares, pentagons, and so on. And, we have to find the perimeter of these polygons based on the input.
+
+ 1. Since the formula to calculate perimeter is common for all regular polygons, we can create a Polygon class and a method calculatePerimeter() to calculate perimeter.
+
+ class RegularPolygon {
+   calculatePerimeter() {
+     // code to compute perimeter
+   }
+ }
+ 2. And inherit Square and Pentagon classes from the RegularPolygon class. Each of these classes will have properties to store the length and number of sides because they are different for all polygons.
+
+ class Square: RegularPolygon {
+   var length = 0
+   var sides = 0
+ }
+ We pass the value of the length and sides to calculatePerimeter() to compute the perimeter.
+
+ This is how inheritance makes our code reusable and more intuitive.
+ */
+class RegularPolygon {
+    func calculatePerimeter(length: Int, sides:Int){
+        print("Perimeter of the polygon is",length * sides)
+    }
+}
+class RegularSquare: RegularPolygon {
+    var length = 0
+    var sides = 0
+     init(length: Int, sides: Int) {
+        self.length = length
+        self.sides = sides
+    }
+    
+    func calculateArea(){
+        print("Regular square area is",length*length)
+    }
+}
+class RegularTriangle: RegularPolygon {
+    var length = 0.0
+    var sides = 0.0
+    func calculateArea() {
+        let triangleArea = (sqrt(3)/4) * (length * length)
+        print("Regular triangle area is",triangleArea)
+    }
+}
+let shape = RegularSquare(length:3,sides:4)
+shape.calculateArea()
+shape.calculatePerimeter(length: 3, sides: 4)
+
+let shape1 = RegularTriangle()
+shape1.length = 3.0
+shape1.calculateArea()
+shape1.calculatePerimeter(length: 2, sides: 3)
+/*
+ In the above example, we have created a RegularPolygon class that calculates the perimeter of the regular polygon.
+ Here, the RegularSquare and RegularTriangle inherits from RegularPolygon.
+ The formula to calculate the parameter of a regular polygon is common for all, so we have reused the calculatePerimeter() method of the superclass.
+ And since the formula to calculate the area is different for different shapes, we have created a separate method inside the subclass to calculate the area.
+ */
