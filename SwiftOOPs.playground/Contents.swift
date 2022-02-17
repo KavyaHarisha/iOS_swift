@@ -581,3 +581,161 @@ shape1.calculatePerimeter(length: 2, sides: 3)
  The formula to calculate the parameter of a regular polygon is common for all, so we have reused the calculatePerimeter() method of the superclass.
  And since the formula to calculate the area is different for different shapes, we have created a separate method inside the subclass to calculate the area.
  */
+/*
+ Prevent Method Overriding:
+ In Swift, we can prevent the method from overriding.
+
+ To make a method non-overridable, we use the final keyword while declaring a method in the superclass.
+ */
+class Home {
+    final func basicFoundation(){
+        print("This is the basic foundation for any kind of home")
+    }
+    
+    func typeOfHouse(){
+        print("2bkh type of home")
+    }
+}
+
+class OfficeHome : Home{
+    override func typeOfHouse() {
+        print("This is office type of home")
+    }
+}
+let office = OfficeHome()
+office.typeOfHouse()
+office.basicFoundation()
+/*
+ In the above example, we have marked the basicFoundation() method in the superclass as final.
+
+ Once the method is declared as final, we cannot override it. So when we try to override the final method,
+
+ override func basicFoundation() {
+ print("Basic foundation of office home")
+ we get an error message: error: instance method overrides a 'final' instance method
+ 
+Note:
+ In Swift, we can override the computed properties.We cannot override the stored properties in Swift.
+ example:
+ class University {
+    var name = ""
+   // computed property
+   var cost: Int {
+   return 5000
+  }
+ }
+
+ class Fee: University {
+  // override computed property
+  override var cost: Int {
+  return 10000
+  }
+ }
+
+ var amount = Fee()
+
+ // access fee property
+ print("New Fee:", amount.cost)
+ 
+ Swift Protocols:
+ In Swift, a protocol defines a blueprint of methods or properties that can then be adopted by classes (or any other types).
+ We use the protocol keyword to define a protocol. For example,
+
+ protocol Greet {
+   // blueprint of a property
+   var name: String { get }
+   // blueprint of a method
+   func message()
+ }
+ Here,
+ Greet - name of the protocol
+ name - a gettable property
+ message() - method definition without any implementation
+ Notes:
+ -> The protocol just holds the method or properties definition, not their actual body.
+ -> The protocol must specify whether the property will be gettable or gettable and settable.
+ 
+ Conform Class To Swift Protocol:
+ In Swift, to use a protocol, other classes must conform to it. After we conform a class to the protocol, we must provide an actual implementation of the method.
+ */
+protocol Greet {
+    var name: String {get}
+    func message()
+}
+class Employee: Greet {
+    var name  = "Sam"
+    
+    func message() {
+      print("Good morning",name)
+    }
+}
+Employee().message()
+/*
+ Conforming Multiple Protocols:
+ In Swift, a class can also conform to multiple protocols.
+ */
+protocol Sum {
+    func addition()
+}
+
+protocol Multiplication {
+    func product()
+}
+class Calculate: Sum, Multiplication {
+    var num1 = 0
+    var num2 = 0
+    func addition() {
+        print("The sum of two numbers is",(num1+num2))
+    }
+    
+    func product() {
+       print("The product of two numbers is",(num1 * num2))
+    }
+}
+let cal = Calculate()
+cal.num1 = 10
+cal.num2 = 11
+cal.product()
+cal.addition()
+/*
+ Swift Protocol Inheritance:
+ Similar to classes, protocols can inherit other protocols.
+ */
+protocol CarType {
+    var colorOptions: Int {get}
+}
+protocol Brand: CarType {
+    var name: String {get}
+}
+
+class MercedesType: Brand {
+    var name = "Mercedes"
+    var colorOptions: Int = 3
+}
+let carMercedes = MercedesType()
+print("Car name is",carMercedes.name)
+print("Car have \(carMercedes.colorOptions) color options")
+/*
+ Protocol Extensions:
+ In Swift, we can extend protocols using the extension keyword.
+ */
+protocol Brake {
+    func doBrake()
+}
+class MotorBike: Brake {
+    var speed: Int = 0
+    func doBrake() {
+        print("Apply the brakes")
+    }
+}
+
+extension Brake {
+    func stop(){
+        print("Engine stopped")
+    }
+}
+let motorBike = MotorBike()
+motorBike.speed = 44
+print("Motor bike speed", motorBike.speed)
+motorBike.doBrake()
+motorBike.stop()
