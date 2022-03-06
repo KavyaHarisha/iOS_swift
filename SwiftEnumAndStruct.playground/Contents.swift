@@ -119,3 +119,67 @@ case let .Sedan(height):
  -> An enum cannot have both raw values and associated values at the same time.
  -> The raw values of an enum must be of the same data type. But associated values can be of any type.
  */
+/*
+ Swift Structs:
+ A struct is used to store variables of different data types. For example,
+ Suppose we want to store the name and age of a person. We can create two variables: name and age and store value.
+ However, suppose we want to store the same information of multiple people.
+ Here's the syntax to define struct in Swift:
+ struct StructureName {
+   // structure definition
+ }
+ */
+struct Person {
+    var name = ""
+    var age = 0
+    
+    func displayDetails(){
+        print("The person details are \(name), \(age)")
+    }
+}
+
+var person = Person()
+person.name = "Singh"
+person.age = 33
+print("Person name \(person.name) and age is \(person.age)")
+/*
+ Note: We can create as many instances of the structure as we want.
+ Swift Memberwise Initializer:
+ Here, values inside the parenthesis () are automatically assigned to corresponding properties of the struct. This is called a memberwise initializer.
+ Note: We can also use a memberwise initializer even if we have assigned a default value to a struct property.
+ */
+let person1 = Person(name: "Jhon", age: 66)
+print("Person details with help of Memberwise Initializer -")
+person1.displayDetails()
+/*
+ We can also define a function inside a swift struct. A function defined inside a struct is called a method.
+ Here, we have used . notation to access method defined inside the struct. Finally, the statement inside the method is executed.
+ Swift Singleton:
+ In Swift, Singleton is a design pattern that ensures a class can have only one object. Such a class is called singleton class.
+ To create a singleton class, we need to follow some rule
+ 1. Create a private initializer:
+ An initializer allows us to instantiate an object of a class. And, making the initializer of a class restricts the object creation of the class from outside of the class.
+ class FileManager {
+   // create a private initializer
+   private init() {
+   }
+ }
+ // Error Code
+ let obj = FileManager()
+ Here, the initializer of the FileManager class is private. So, when we try to create an object of FileManager outside of the class, we get an error.
+ 2. Create static type Singleton Object:
+ In Singleton class, we create a single static type object of the class. Making the object static allows us to access the object using the class name.
+ */
+class FileManager {
+    static let fileObj = FileManager()
+    private init() {
+        
+    }
+    func simpleMethod(){
+        print("Singleton class method")
+    }
+}
+FileManager.fileObj.simpleMethod()
+/*
+ In the above example, we have created a singleton class FileManager. Since it is a singleton class, we have made the initializer private and created a static object named fileObj.
+ */
